@@ -39,5 +39,5 @@ func main() {
 	app := fiber.New()
 	routes.SetupRoutes(app, handler)
 
-	log.Fatal(app.Listen(":8080"))
+	log.Fatal(app.Listen(config.Port))
 }
