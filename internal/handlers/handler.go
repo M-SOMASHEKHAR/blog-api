@@ -12,11 +12,11 @@ type handler struct {
 }
 
 type BlogHandler interface {
-	CreateBlog(c *fiber.Ctx) error
-	GetAllBlogs(c *fiber.Ctx) error
-	GetBlogByID(c *fiber.Ctx) error
-	UpdateBlog(c *fiber.Ctx) error
-	DeleteBlog(c *fiber.Ctx) error
+	CreateBlog(c *fiber.Ctx)
+	GetAllBlogs(c *fiber.Ctx)
+	GetBlogByID(c *fiber.Ctx)
+	UpdateBlog(c *fiber.Ctx)
+	DeleteBlog(c *fiber.Ctx)
 }
 
 func NewBlogHandler(service *services.BlogService) (BlogHandler, error) {
