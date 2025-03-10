@@ -4,6 +4,7 @@ import (
 	config "blog-api/internal/configs"
 	"blog-api/internal/database"
 	"blog-api/internal/handlers"
+	logger "blog-api/internal/logging"
 	"blog-api/internal/repository"
 	routes "blog-api/internal/routers"
 	"blog-api/internal/services"
@@ -12,7 +13,13 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+func init() {
+	logger.LoadLogger()
+}
+
 func main() {
+
+	logger.Log.Info().Msg("blog-api application starting")
 
 	config := config.LoadConfig()
 

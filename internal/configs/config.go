@@ -1,7 +1,7 @@
 package config
 
 import (
-	"log"
+	logger "blog-api/internal/logging"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -13,11 +13,14 @@ type Config struct {
 }
 
 func LoadConfig() Config {
+
+	logger.Log.Info().Msg("loading env file")
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		logger.Log.Fatal().Err(err).Msg("failed to load env fail")
 	}
 
+	logger.Log.Info().Msg("env loded successfully")
 	return Config{
 		DBUrl: os.Getenv("DATABASE_URL"),
 		Port:  os.Getenv("PORT"),
