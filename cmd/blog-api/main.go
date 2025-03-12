@@ -47,5 +47,9 @@ func main() {
 	routers.SetupRoutes(app, handler)
 
 	logger.Log.Info().Msg("sever is listening")
+	port := config.Port
+	if port == "" {
+		port = ":8080"
+	}
 	log.Fatal(app.Listen(config.Port))
 }
