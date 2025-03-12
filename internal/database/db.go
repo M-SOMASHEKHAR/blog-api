@@ -3,15 +3,25 @@ package database
 import (
 	"blog-api/internal/logger"
 	"blog-api/internal/models"
+	"fmt"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-func ConnectDB(dbURL string) (*gorm.DB, error) {
+func ConnectDB() (*gorm.DB, error) {
 
 	logger.Log.Info().Msg("establishing database connection")
-	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
+	dbHost := os.Getenv("DB_HOST")
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	dbPort := os.Getenv("DB_PORT")
+
+	//postgres database source name
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s", dbHost, dbUser, dbPassword, dbName, dbPort)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		logger.Log.Fatal().Err(err).Msg("failed to establish database connection")
 	}
