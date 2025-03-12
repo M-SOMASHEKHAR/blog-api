@@ -3,6 +3,7 @@ package config
 import (
 	logger "blog-api/internal/logging"
 	"os"
+	"path/filepath"
 
 	"github.com/joho/godotenv"
 )
@@ -15,7 +16,18 @@ type Config struct {
 func LoadConfig() Config {
 
 	logger.Log.Info().Msg("loading env file")
-	err := godotenv.Load()
+
+	envPath, err := filepath.Abs("../../")
+	if err != nil {
+		logger.Log.Fatal().Err(err).Msg("failed to get current working directory")
+	}
+	envPath = filepath.Join(envPath, "internal", "configs", "application.env")
+	err = godotenv.Load(envPath)
+	if err != nil {
+		logger.Log.Fatal().Err(err).Msg("failed to load env fail")
+	}
+
+	err = godotenv.Load(envPath)
 	if err != nil {
 		logger.Log.Fatal().Err(err).Msg("failed to load env fail")
 	}
