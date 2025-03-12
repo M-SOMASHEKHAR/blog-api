@@ -46,5 +46,6 @@ func main() {
 	app := fiber.New()
 	routers.SetupRoutes(app, handler)
 
+	logger.Log.Info().Msg("sever is listening")
 	log.Fatal(app.Listen(config.Port))
 }
