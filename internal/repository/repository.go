@@ -13,10 +13,10 @@ type database struct {
 
 type BlogRepo interface {
 	CreateBlog(blog *models.Blog) error
-	GetAllBlogs() ([]models.Blog, error)
-	GetBlogByID(id uint) (models.Blog, error)
+	GetAllBlogs() (*[]models.Blog, error)
+	GetBlogByID(id *uint) (*models.Blog, error)
 	UpdateBlog(blog *models.Blog) error
-	DeleteBlog(id uint) error
+	DeleteBlog(id *uint) error
 }
 
 func NewBlogRepo(db *gorm.DB) (BlogRepo, error) {

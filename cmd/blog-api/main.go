@@ -23,7 +23,7 @@ func main() {
 
 	config := configs.LoadConfig()
 
-	gorm, err := database.ConnectDB()
+	gorm, err := database.ConnectDB(&config.DBUrl)
 	if err != nil {
 		return
 	}

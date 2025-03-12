@@ -12,10 +12,10 @@ type service struct {
 
 type BlogService interface {
 	CreateBlogService(blog *models.Blog) error
-	GetAllBlogsService() ([]models.Blog, error)
-	GetBlogByIDService(id uint) (models.Blog, error)
-	UpdateBlogService(blog *models.Blog) error
-	DeleteBlogService(id uint) error
+	GetAllBlogsService() (*[]models.Blog, error)
+	GetBlogByIDService(id *uint) (*models.Blog, error)
+	UpdateBlogService(id *uint) error
+	DeleteBlogService(id *uint) error
 }
 
 func NewBlogService(repo *repository.BlogRepo) (BlogService, error) {

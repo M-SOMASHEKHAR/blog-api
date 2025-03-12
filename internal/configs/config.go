@@ -13,7 +13,7 @@ type Config struct {
 	Port  string
 }
 
-func LoadConfig() Config {
+func LoadConfig() *Config {
 
 	logger.Log.Info().Msg("loading env file")
 
@@ -33,7 +33,7 @@ func LoadConfig() Config {
 	}
 
 	logger.Log.Info().Msg("env loded successfully")
-	return Config{
+	return &Config{
 		DBUrl: os.Getenv("DATABASE_URL"),
 		Port:  os.Getenv("PORT"),
 	}
