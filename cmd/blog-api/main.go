@@ -1,12 +1,12 @@
 package main
 
 import (
-	config "blog-api/internal/configs"
+	"blog-api/internal/configs"
 	"blog-api/internal/database"
 	"blog-api/internal/handlers"
-	logger "blog-api/internal/logging"
+	"blog-api/internal/logger"
 	"blog-api/internal/repository"
-	routes "blog-api/internal/routers"
+	"blog-api/internal/routers"
 	"blog-api/internal/services"
 	"log"
 
@@ -21,7 +21,7 @@ func main() {
 
 	logger.Log.Info().Msg("blog-api application starting")
 
-	config := config.LoadConfig()
+	config := configs.LoadConfig()
 
 	gorm, err := database.ConnectDB(config.DBUrl)
 	if err != nil {
@@ -44,7 +44,7 @@ func main() {
 	}
 
 	app := fiber.New()
-	routes.SetupRoutes(app, handler)
+	routers.SetupRoutes(app, handler)
 
 	log.Fatal(app.Listen(config.Port))
 }

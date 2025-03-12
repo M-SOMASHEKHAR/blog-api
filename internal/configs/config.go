@@ -1,7 +1,7 @@
-package config
+package configs
 
 import (
-	logger "blog-api/internal/logging"
+	"blog-api/internal/logger"
 	"os"
 	"path/filepath"
 
