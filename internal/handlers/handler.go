@@ -11,6 +11,7 @@ type handler struct {
 	service services.BlogService
 }
 
+//go:generate mockgen -source=handler.go -destination=../mocks/handler.go -package=mocks
 type BlogHandler interface {
 	CreateBlog(c *fiber.Ctx) error
 	GetAllBlogs(c *fiber.Ctx) error

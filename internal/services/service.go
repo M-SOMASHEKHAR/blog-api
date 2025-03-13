@@ -10,6 +10,7 @@ type service struct {
 	repo repository.BlogRepo
 }
 
+//go:generate mockgen -source=service.go -destination=../mocks/service.go -package=mocks
 type BlogService interface {
 	CreateBlogService(blog *models.Blog) error
 	GetAllBlogsService() (*[]models.Blog, error)

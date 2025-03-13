@@ -11,6 +11,7 @@ type database struct {
 	db *gorm.DB
 }
 
+//go:generate mockgen -source=repository.go -destination=../mocks/repository.go -package=mocks
 type BlogRepo interface {
 	CreateBlog(blog *models.Blog) error
 	GetAllBlogs() (*[]models.Blog, error)
